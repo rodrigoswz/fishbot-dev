@@ -8,13 +8,13 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="..\..\bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
 
-<dom-module id="main-panel">
+<dom-module id="advanced-panel">
   <template>
     <style>
-      :host[show] {
-        @apply(--layout-horizontal);
+      :host {
+        @apply(--layout-vertical);
         @apply(--layout-around-justified);
         @apply(--layout-wrap);
         height: 100%;
@@ -22,108 +22,84 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin: 0 auto;
         background-color: var(--paper-grey-50);
         width: 100%;
-        margin-top: 50px;
       }
-
-      paper-card {
-        max-width: 400px;
-        min-height: 300px;
-        margin-top: 25px;
-        --paper-card-header-color: white;
-        color: gray;
-      }
-
+      
       paper-button {
         background-color: var(--paper-blue-200);
         color: white;
       }
-
-      .content {
-        display: table;
-        -webkit-box-pack: center;
-        -moz-box-pack: center;
-        -ms-flex-pack: center;
-        -webkit-justify-content: center;
-        justify-content: center;
-        @apply(--layout-horizontal);
-        @apply(--layout-wrap);
-        height; 1000px;
-
+      
+      paper-card {
+        
+        min-height: 300px;
+        width: calc(98.66% - 16px);
+        margin-top: 25px;
+        --paper-card-header-color: white;
+        color: gray;
       }
-
-      iron-icon {
-        margin-right: 10px;
-      }
-
+      
       paper-toggle-button {
         float: right;
       }
       
-      #2card {
-        max-height: 327px;
+      iron-icon {
+        margin-right: 10px;
       }
-
-      @media all and (min-width: 700px) {
-        :host[show] {
-          @apply(--layout-justified);
-        }
-        paper-card {
-          width: calc(50% - 100px);
-        }
-        paper-card + paper-card {
-          margin-left: 100px;
-        }
-
+      
+      paper-checkbox {
+        margin-left: 4px;
+        --paper-checkbox-checked-color: var(--paper-blue-500);
+        --paper-checkbox-checked-ink-color: var(--paper-blue-500);
+        --paper-checkbox-unchecked-color: var(--paper-grey-500);
+        --paper-checkbox-unchecked-ink-color: var(--paper-grey-900);
+        --paper-checkbox-label-color: gray;
       }
-
-      @media all and (min-width: 1200px) {
-        :host {
-          width: 90%;
-        }
-      }
+      
     </style>
     <div class="content">
-      <paper-card elevation="1" class="fancy" heading="Dispositivos" image="../../images/header.png">
+      <paper-card elevation="1" class="fancy" heading="Dispositivos" image="../../images/large-header.png">
         <div class="card-content">
+          <paper-checkbox>Automático</paper-checkbox><br><br>
           <iron-icon icon="mdi:lan"></iron-icon>Dispositivo A<paper-toggle-button></paper-toggle-button><br /><br />
           <iron-icon icon="mdi:lan"></iron-icon>Dispositivo B<paper-toggle-button></paper-toggle-button><br /><br />
           <iron-icon icon="mdi:lan"></iron-icon>Dispositivo C<paper-toggle-button></paper-toggle-button><br /><br />
-          <iron-icon icon="mdi:lan"></iron-icon>Dispositivo D<paper-toggle-button></paper-toggle-button><br />
+          <iron-icon icon="mdi:lan"></iron-icon>Dispositivo D<paper-toggle-button></paper-toggle-button><br /><br />
+          <iron-icon icon="mdi:flashlight"></iron-icon> Iluminação <paper-toggle-button></paper-toggle-button><br><br>
+          <iron-icon icon="mdi:food"></iron-icon> Alimentador <paper-toggle-button></paper-toggle-button>
         </div>
         <div class="card-actions">
           <paper-button toggles raised>
-            LIGAR TODOS
+            --source--
           </paper-button>
         </div>
       </paper-card>
-      <paper-card id="2card" elevation="1" heading="Situação atual" image="../../images/header.png">
+      
+      <paper-card elevation="1" class="fancy" heading="Situação atual" image="../../images/large-header.png">
         <div class="card-content">
           <iron-icon icon="mdi:temperature-celsius"></iron-icon><b>Temperatura:</b><br /><br />
           <iron-icon icon="mdi:water-percent"></iron-icon><b>Nível da água:</b><br /><br />
           <iron-icon icon="mdi:alarm"></iron-icon><b>Hora atual:</b><br /><br /><br />
         </div>
         <div class="card-actions">
-          <a href="/log">
-            <paper-button raised>
-              RELATÓRIO
-            </paper-button>
-          </a>
+          <paper-button toggles raised>
+            --source--
+          </paper-button>
         </div>
       </paper-card>
     </div>
-
+    
   </template>
   <script>
   (function() {
     'use strict';
 
     Polymer({
-      is: 'main-panel',
+      is: 'advanced-panel',
 
       properties: {
         foo: {
           type: String,
-          value: 'main-panel',
+          value: 'advanced-panel',
           notify: true
         }
       }
