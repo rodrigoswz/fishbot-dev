@@ -15,9 +15,73 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style>
       :host {
         display: block;
+        color: grey;
+      }
+      paper-card{
+        height: 100%;
+        padding: 16px 0 16px 0;
+        border-radius: 2px;
+        display: block;
+        width: 325px;
+        margin: 16px auto;
+      }
+      .center-block{
+        display: table;
+        margin: 0 auto;
+      }
+      card-content{
+        padding: 2px;
+      }
+      paper-toggle-button{
+        float: right;
+        margin-top: 10px;
+      }
+      .vazio{
+        width: 300px;
       }
     </style>
-
+    <div>
+      <div class="container">
+        <div class="row">
+           <div class="col s12 m6">
+             <div class="center-block">
+               <paper-card heading="Dispositivos">
+                  <div class="card-content"><paper-icon-button disabled icon="mdi:lan"></paper-icon-button>Dispositivo A <paper-toggle-button></paper-toggle-button></div>
+                  <div class="card-content"><paper-icon-button disabled icon="mdi:lan"></paper-icon-button>Dispositivo B <paper-toggle-button></paper-toggle-button></div>
+                  <div class="card-content"><paper-icon-button disabled icon="mdi:lan"></paper-icon-button>Dispositivo C <paper-toggle-button></paper-toggle-button></div>
+                  <div class="card-content"><paper-icon-button disabled icon="mdi:lan"></paper-icon-button>Dispositivo D <paper-toggle-button></paper-toggle-button></div>
+                  <div class="card-actions">
+                    <paper-button>Ligar todos</paper-button>
+                    <paper-icon-button icon="hardware:keyboard-arrow-up" title="more info" onclick="_toggle()" style="float:right;">
+                    </paper-icon-button>
+                    <iron-collapse id="more-info" style="width:100%;">
+                      vai dentro da seta maneira
+                    </iron-collapse>
+                    <script>
+                      function _toggle() {
+                        var moreInfo = document.getElementById('more-info');
+                        var iconButton = Polymer.dom(event).localTarget;
+                        iconButton.icon = moreInfo.opened ? 'hardware:keyboard-arrow-up'
+                                                          : 'hardware:keyboard-arrow-down';
+                        moreInfo.toggle();
+                      }
+                    </script>
+                  </div>
+                </paper-card>
+              </div>
+           </div>
+           <div class="col s12 m6">
+             <div class="center-block">
+               <paper-card heading="Situação Atual">
+                  <div class="card-content"><paper-icon-button icon="mdi:temperature-celsius"></paper-icon-button><b>Temperatura</b></div>
+                  <div class="card-content"><paper-icon-button icon="mdi:water-percent"></paper-icon-button><b>Nível da água</b></div>
+                  <div class="card-content"><paper-icon-button icon="mdi:alarm"></paper-icon-button><b>Hora</b></div>
+                </paper-card>
+              </div>
+             </div>
+        </div>
+      </div>
+    </div>
   </template>
   <script>
   (function() {
