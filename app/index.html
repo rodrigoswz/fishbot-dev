@@ -82,7 +82,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <span>Home</span>
           </a>
 
-          <a data-route="users" href="{{baseUrl}}users">
+          <a data-route="log" href="{{baseUrl}}log">
             <iron-icon icon="mdi:chart-bar"></iron-icon>
             <span>Logs</span>
           </a>
@@ -104,7 +104,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <div class="bottom fit">
             <paper-tabs attr-for-selected="data-route" selected="{{route}}" noink>
               <paper-tab data-route="home">Painel Principal</paper-tab>
-              <paper-tab data-route="users">Painel Avançado</paper-tab>
+              <paper-tab data-route="log">Painel Avançado</paper-tab>
             </paper-tabs>
           </div>
 
@@ -114,6 +114,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div class="content">
           <iron-pages attr-for-selected="data-route" selected="{{route}}">
             <section data-route="home">
+              <main-panel></main-panel>
               <paper-material elevation="1">
                 <my-greeting class="focus-target" tabindex="-1"></my-greeting>
 
@@ -147,18 +148,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </paper-material>
             </section>
 
-            <section data-route="users">
+            <section data-route="log">
               <paper-material elevation="1">
                 <h1 class="page-title focus-target" tabindex="-1">Users</h1>
                 <p>This is the users section</p>
-                <a href$="{{baseUrl}}users/Addy">Addy</a><br>
-                <a href$="{{baseUrl}}users/Rob">Rob</a><br>
-                <a href$="{{baseUrl}}users/Chuck">Chuck</a><br>
-                <a href$="{{baseUrl}}users/Sam">Sam</a>
+                <a href$="{{baseUrl}}log/Addy">Addy</a><br>
+                <a href$="{{baseUrl}}log/Rob">Rob</a><br>
+                <a href$="{{baseUrl}}log/Chuck">Chuck</a><br>
+                <a href$="{{baseUrl}}log/Sam">Sam</a>
               </paper-material>
             </section>
 
-            <section data-route="user-info">
+            <section data-route="log-info">
               <paper-material elevation="1">
                 <h1 class="page-title focus-target" tabindex="-1">User: {{params.name}}</h1>
                 <div>This is {{params.name}}'s section</div>

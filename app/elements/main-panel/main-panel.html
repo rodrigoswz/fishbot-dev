@@ -13,10 +13,100 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <dom-module id="main-panel">
   <template>
     <style>
-      :host {
-        display: block;
+      :host[show] {
+        @apply(--layout-horizontal);
+        @apply(--layout-around-justified);
+        @apply(--layout-wrap);
+        height: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        background-color: var(--paper-grey-50);
+        width: 100%;
+        margin-top: 50px;
+      }
+
+      paper-card {
+        max-width: 400px;
+        min-height: 300px;
+        margin-top: 25px;
+        --paper-card-header-color: white;
+        color: gray;
+      }
+
+      paper-button {
+        background-color: var(--paper-blue-200);
+        color: white;
+      }
+
+      .content {
+        display: table;
+        -webkit-box-pack: center;
+        -moz-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        @apply(--layout-horizontal);
+        @apply(--layout-wrap);
+
+      }
+
+      iron-icon {
+        margin-right: 10px;
+      }
+
+      paper-toggle-button {
+        float: right;
+      }
+
+      @media all and (min-width: 700px) {
+        :host[show] {
+          @apply(--layout-justified);
+        }
+        paper-card {
+          width: calc(50% - 100px);
+        }
+        paper-card + paper-card {
+          margin-left: 100px;
+        }
+
+      }
+
+      @media all and (min-width: 1200px) {
+        :host {
+          width: 90%;
+        }
       }
     </style>
+    <div class="content">
+      <paper-card elevation="1" class="fancy" heading="Dispositivos" image="../../images/header.png">
+        <div class="card-content">
+          <iron-icon icon="mdi:lan"></iron-icon>Dispositivo A<paper-toggle-button></paper-toggle-button><br /><br />
+          <iron-icon icon="mdi:lan"></iron-icon>Dispositivo B<paper-toggle-button></paper-toggle-button><br /><br />
+          <iron-icon icon="mdi:lan"></iron-icon>Dispositivo C<paper-toggle-button></paper-toggle-button><br /><br />
+          <iron-icon icon="mdi:lan"></iron-icon>Dispositivo D<paper-toggle-button></paper-toggle-button><br />
+        </div>
+        <div class="card-actions">
+          <paper-button toggles raised>
+            LIGAR TODOS
+          </paper-button>
+        </div>
+
+      </paper-card>
+      <paper-card elevation="1" heading="Situação atual" image="../../images/header.png">
+        <div class="card-content">
+          <iron-icon icon="mdi:temperature-celsius"></iron-icon><b>Temperatura:</b><br /><br />
+          <iron-icon icon="mdi:water-percent"></iron-icon><b>Nível da água:</b><br /><br />
+          <iron-icon icon="mdi:alarm"></iron-icon><b>Hora atual:</b><br /><br /><br />
+        </div>
+        <div class="card-actions">
+          <a href="/log">
+            <paper-button raised>
+              RELATÓRIO
+            </paper-button>
+          </a>
+        </div>
+      </paper-card>
+    </div>
 
   </template>
   <script>
