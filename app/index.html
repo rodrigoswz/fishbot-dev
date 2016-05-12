@@ -83,34 +83,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </a>
 
           <a data-route="users" href="{{baseUrl}}users">
-            <iron-icon icon="info"></iron-icon>
-            <span>Users</span>
+            <iron-icon icon="mdi:chart-bar"></iron-icon>
+            <span>Logs</span>
           </a>
 
-          <a data-route="contact" href="{{baseUrl}}contact">
-            <iron-icon icon="mail"></iron-icon>
-            <span>Contact</span>
+          <a data-route="wreouwe" href="{{baseUrl}}contact">
+            <iron-icon icon="mdi:wheelchair-accessibility"></iron-icon>
+            <span>Teste 404</span>
           </a>
         </paper-menu>
       </paper-scroll-header-panel>
 
       <!-- Main Area -->
-      <paper-scroll-header-panel main id="headerPanelMain" condenses keep-condensed-header>
+      <paper-scroll-header-panel main id="headerPanelMain" fixed>
         <!-- Main Toolbar -->
-        <paper-toolbar id="mainToolbar" class="tall">
+        <paper-toolbar id="mainToolbar" class="medium-tall">
           <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
 
-          <span class="space"></span>
-
-          <!-- Application name -->
-          <div class="middle middle-container">
-            <div class="app-name">Polymer Starter Kit</div>
+          <span class="title">FISHBOT</span>
+          <div class="bottom fit">
+            <paper-tabs attr-for-selected="data-route" selected="{{route}}" noink>
+              <paper-tab data-route="home">Painel Principal</paper-tab>
+              <paper-tab data-route="users">Painel Avançado</paper-tab>
+            </paper-tabs>
           </div>
 
-          <!-- Application sub title -->
-          <div class="bottom bottom-container">
-            <div class="bottom-title">The future of the web today</div>
-          </div>
         </paper-toolbar>
 
         <!-- Main Content -->
