@@ -57,6 +57,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <!-- For shared styles, shared-styles.html import in elements.html -->
   <style is="custom-style" include="shared-styles"></style>
+  <script>
+    function gaveta(){
+        $('#paperDrawerPanel').togglePanel();
+    }
+  </script>
 </head>
 
 <body unresolved>
@@ -72,7 +77,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <!-- Drawer Toolbar -->
         <paper-toolbar id="drawerToolbar">
-          <span class="menu-name">Menu</span>
+          <span class="menu-name">Menu<paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button></span>
         </paper-toolbar>
 
         <!-- Drawer Content -->
@@ -98,9 +103,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-scroll-header-panel main id="headerPanelMain" fixed>
         <!-- Main Toolbar -->
         <paper-toolbar id="mainToolbar" class="medium-tall">
-          <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
+          <paper-icon-button id="paperToggle" icon="menu" onclick="gaveta()"></paper-icon-button>
 
-          <span class="title">FISHBOT</span>
+          <span class="title"><iron-icon icon="maps:directions-boat"></iron-icon>FISHBOT</span>
           <div class="bottom fit">
             <paper-tabs attr-for-selected="data-route" selected="{{route}}" noink>
               <paper-tab data-route="home">Painel Principal</paper-tab>
@@ -116,19 +121,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <section data-route="home">
               <main-panel></main-panel>
             </section>
-            
+
             <section data-route="advanced">
               <advanced-panel></advanced-panel>
             </section>
-            
+
             <section data-route="log">
+              <log-panel></log-panel>
               <paper-material elevation="1">
-                <h1 class="page-title focus-target" tabindex="-1">Users</h1>
-                <p>This is the users section</p>
-                <a href$="{{baseUrl}}log/Addy">Addy</a><br>
-                <a href$="{{baseUrl}}log/Rob">Rob</a><br>
-                <a href$="{{baseUrl}}log/Chuck">Chuck</a><br>
-                <a href$="{{baseUrl}}log/Sam">Sam</a>
+                <h1 class="page-title focus-target" tabindex="-1">Dados</h1>
+                <p>adicionar a tabela do bd</p>
               </paper-material>
             </section>
 
@@ -176,6 +178,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <!-- build:js scripts/app.js -->
   <script src="scripts/app.js"></script>
+  <script src="scripts/main.js"></script>
+  <script>
+      $(document).ready(function () { //se a página carregar
+          BuscaDados(); //roda a função buscar dados
+          setInterval(function () {
+              BuscaDados(); //seta um tempo de 1s pra rodar a função repetidamente
+          }, 3000);
+      });
+  </script>
   <!-- endbuild-->
 </body>
 

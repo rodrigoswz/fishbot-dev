@@ -68,11 +68,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       app.route = 'advanced';
       setFocus(app.route);
     });
-    
+
 
     // 404
     page('*', function() {
-      app.$.toast.text = 'Can\'t find: ' + window.location.href  + '. Redirected you to Home Page';
+      app.$.toast.text = 'Não encontrei o link: ' + window.location.href  + '. Estou te redirecionando pro início';
       app.$.toast.show();
       page.redirect(app.baseUrl);
     });

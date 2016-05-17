@@ -23,29 +23,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background-color: var(--paper-grey-50);
         width: 100%;
       }
-      
+
       paper-button {
         background-color: var(--paper-blue-200);
         color: white;
       }
-      
+
       paper-card {
-        
+
         min-height: 300px;
         width: calc(98.66% - 16px);
         margin-top: 25px;
         --paper-card-header-color: white;
         color: gray;
       }
-      
-      paper-toggle-button {
+
+      .direita {
         float: right;
       }
-      
+
       iron-icon {
         margin-right: 10px;
       }
-      
+
       paper-checkbox {
         margin-left: 4px;
         --paper-checkbox-checked-color: var(--paper-blue-500);
@@ -54,40 +54,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         --paper-checkbox-unchecked-ink-color: var(--paper-grey-900);
         --paper-checkbox-label-color: gray;
       }
-      
+
+      @media all and (min-width: 1200px) {
+        :host {
+          width: 90%;
+        }
+      }
+
+      .hidden {
+        display:none;
+      }
     </style>
     <div class="content">
       <paper-card elevation="1" class="fancy" heading="Dispositivos" image="../../images/large-header.png">
         <div class="card-content">
-          <paper-checkbox>Automático</paper-checkbox><br><br>
-          <iron-icon icon="mdi:lan"></iron-icon>Dispositivo A<paper-toggle-button></paper-toggle-button><br /><br />
-          <iron-icon icon="mdi:lan"></iron-icon>Dispositivo B<paper-toggle-button></paper-toggle-button><br /><br />
-          <iron-icon icon="mdi:lan"></iron-icon>Dispositivo C<paper-toggle-button></paper-toggle-button><br /><br />
-          <iron-icon icon="mdi:lan"></iron-icon>Dispositivo D<paper-toggle-button></paper-toggle-button><br /><br />
-          <iron-icon icon="mdi:flashlight"></iron-icon> Iluminação <paper-toggle-button></paper-toggle-button><br><br>
-          <iron-icon icon="mdi:food"></iron-icon> Alimentador <paper-toggle-button></paper-toggle-button>
-        </div>
-        <div class="card-actions">
-          <paper-button toggles raised>
-            --source--
-          </paper-button>
+          <paper-checkbox id="automode"  onclick="EnviarComandoAUTO()">Automático</paper-checkbox><paper-toggle-button class="direita" id="ptb_all" onclick="LigarTodos('DALL')"></paper-toggle-button><span class="hidden" id="all"></span><br><br>
+          <iron-icon icon="mdi:lan"></iron-icon>Dispositivo A<span id="D1" class="hidden"></span><paper-toggle-button class="direita" id='ptb_av1' onclick="EnviarSaida('D1')" ></paper-toggle-button><br /><br />
+          <iron-icon icon="mdi:lan"></iron-icon>Dispositivo B<span id="D2" class="hidden"></span><paper-toggle-button class="direita" id='ptb_av2' onclick="EnviarSaida('D2')"></paper-toggle-button><br /><br />
+          <iron-icon icon="mdi:lan"></iron-icon>Dispositivo C<span id="D3" class="hidden"></span><paper-toggle-button class="direita" id='ptb_av3' onclick="EnviarSaida('D3')" ></paper-toggle-button><br /><br />
+          <iron-icon icon="mdi:lan"></iron-icon>Dispositivo D<span id="D4" class="hidden"></span><paper-toggle-button class="direita" id='ptb_av4' onclick="EnviarSaida('D4')" ></paper-toggle-button><br /><br />
+          <iron-icon icon="mdi:flashlight"></iron-icon> Iluminação<span id="LUZ" class="hidden"></span><paper-toggle-button class="direita" id="ptb_luzav" onclick="EnviarComandoRGB('LIGHT')"></paper-toggle-button><br><br>
+          <iron-icon icon="mdi:food"></iron-icon> Alimentador <paper-toggle-button class="direita" id='ptb_feed'></paper-toggle-button>
         </div>
       </paper-card>
-      
+
       <paper-card elevation="1" class="fancy" heading="Situação atual" image="../../images/large-header.png">
         <div class="card-content">
           <iron-icon icon="mdi:temperature-celsius"></iron-icon><b>Temperatura:</b><br /><br />
           <iron-icon icon="mdi:water-percent"></iron-icon><b>Nível da água:</b><br /><br />
           <iron-icon icon="mdi:alarm"></iron-icon><b>Hora atual:</b><br /><br /><br />
         </div>
-        <div class="card-actions">
-          <paper-button toggles raised>
-            --source--
-          </paper-button>
-        </div>
       </paper-card>
     </div>
-    
+
   </template>
   <script>
   (function() {

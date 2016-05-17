@@ -13,45 +13,95 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <dom-module id="log-panel">
   <template>
     <style>
+    :host {
+      @apply(--layout-vertical);
+      @apply(--layout-around-justified);
+      @apply(--layout-wrap);
+      height: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      background-color: var(--paper-grey-50);
+      width: 100%;
+    }
+
+    paper-button {
+      background-color: var(--paper-blue-200);
+      color: white;
+    }
+
+    paper-card {
+      min-height: 300px;
+      width: calc(98.66% - 16px);
+      margin-top: 25px;
+      color: gray;
+    }
+
+    paper-card.fancy {
+      width: calc(100% - 16px);
+    }
+
+    .content {
+      display: table;
+      -webkit-box-pack: center;
+      -moz-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      @apply(--layout-horizontal);
+      @apply(--layout-wrap);
+      width: 100%;
+
+    }
+
+    .direita {
+      float: right;
+    }
+
+    iron-icon {
+      margin-right: 10px;
+    }
+
+    paper-checkbox {
+      margin-left: 4px;
+      --paper-checkbox-checked-color: var(--paper-blue-500);
+      --paper-checkbox-checked-ink-color: var(--paper-blue-500);
+      --paper-checkbox-unchecked-color: var(--paper-grey-500);
+      --paper-checkbox-unchecked-ink-color: var(--paper-grey-900);
+      --paper-checkbox-label-color: gray;
+    }
+
+    @media all and (min-width: 1200px) {
       :host {
-        display: block;
+        width: 90%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .content{
+        -webkit-box-pack: center;
+        -moz-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
       }
 
-      paper-material {
-        border-radius: 2px;
-        height: 100%;
-        padding: 16px 0 16px 0;
-        width: calc(48.66% - 16px);
-        margin: 16px auto;
-        background: white;
+      paper-card {
+        --menu-container-display: none;
+        width: calc(97.33% - 32px);
+        padding-left: 16px;
+        padding-right: 16px;
       }
 
-      @media (max-width: 600px) {
-
-        paper-material {
-          --menu-container-display: none;
-          width: calc(97.33% - 32px);
-          padding-left: 16px;
-          padding-right: 16px;
-        }
-
-      }
-
-      @media (min-width: 601px) {
-
-        paper-material {
-          width: calc(98% - 46px);
-          margin-bottom: 32px;
-          padding-left: 30px;
-          padding-right: 30px;
-        }
-
-      }
-
+    }
     </style>
-    <div>
-      
+    <div class="content">
+      <paper-card elevation="1" heading="Dispositivos">
+        <div class="card-content">
+          adicionar gráfico
+        </div>
+      </paper-card>
     </div>
+    
   </template>
   <script>
   (function() {
