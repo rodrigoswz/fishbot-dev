@@ -11,8 +11,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
 <dom-module id="advanced-panel">
-  <template>
+  <template id="scope">
     <style>
+
+    /* label color */
+
+       /* label focus color */
+       .input-field input[type=number]:focus + label {
+         color: var(--paper-blue-200);;
+       }
+       /* label underline focus color */
+       .input-field input[type=number]:focus {
+         border-bottom: 1px solid var(--paper-blue-200);;
+         box-shadow: 0 1px 0 0 var(--paper-blue-200);;
+       }
+       /* valid color */
+       .input-field input[type=number].valid {
+         border-bottom: 1px solid var(--paper-blue-200);;
+         box-shadow: 0 1px 0 0 var(--paper-blue-200);;
+       }
+       /* invalid color */
+       .input-field input[type=number].invalid {
+         border-bottom: 1px solid var(--paper-blue-200);;
+         box-shadow: 0 1px 0 0 var(--paper-blue-200);;
+       }
+       /* icon prefix focus color */
+       .input-field .prefix.active {
+         color: var(--paper-blue-200);;
+       }
+
       :host {
         @apply(--layout-vertical);
         @apply(--layout-around-justified);
@@ -61,32 +88,142 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       }
 
+      @media all and (max-width: 700px){
+        .content{
+          display: table;
+          margin-left: 25px;
+          -webkit-box-pack: center;
+          -moz-box-pack: center;
+          -ms-flex-pack: center;
+          -webkit-justify-content: center;
+          justify-content: center;
+        }
+      }
+
       .hidden {
         display:none;
       }
     </style>
-    <div class="content">
-      <paper-card elevation="1" class="fancy" heading="Dispositivos" image="../../images/large-header.png">
-        <div class="card-content">
-          <paper-checkbox id="automode"  onclick="EnviarComandoAUTO()">Automático</paper-checkbox><paper-toggle-button class="direita" id="ptb_all" onclick="LigarTodos('DALL')"></paper-toggle-button><span class="hidden" id="all"></span><br><br>
-          <iron-icon icon="mdi:lan"></iron-icon>Dispositivo A<span id="D1" class="hidden"></span><paper-toggle-button class="direita" id='ptb_av1' onclick="EnviarSaida('D1')" ></paper-toggle-button><br /><br />
-          <iron-icon icon="mdi:lan"></iron-icon>Dispositivo B<span id="D2" class="hidden"></span><paper-toggle-button class="direita" id='ptb_av2' onclick="EnviarSaida('D2')"></paper-toggle-button><br /><br />
-          <iron-icon icon="mdi:lan"></iron-icon>Dispositivo C<span id="D3" class="hidden"></span><paper-toggle-button class="direita" id='ptb_av3' onclick="EnviarSaida('D3')" ></paper-toggle-button><br /><br />
-          <iron-icon icon="mdi:lan"></iron-icon>Dispositivo D<span id="D4" class="hidden"></span><paper-toggle-button class="direita" id='ptb_av4' onclick="EnviarSaida('D4')" ></paper-toggle-button><br /><br />
-          <iron-icon icon="mdi:flashlight"></iron-icon> Iluminação<span id="LUZ" class="hidden"></span><paper-toggle-button class="direita" id="ptb_luzav" onclick="EnviarComandoRGB('LIGHT')"></paper-toggle-button><br><br>
-          <iron-icon icon="mdi:food"></iron-icon> Alimentador <paper-toggle-button class="direita" id='ptb_feed'></paper-toggle-button>
-        </div>
-      </paper-card>
-
-      <paper-card elevation="1" class="fancy" heading="Situação atual" image="../../images/large-header.png">
-        <div class="card-content">
-          <iron-icon icon="mdi:temperature-celsius"></iron-icon><b>Temperatura:</b><br /><br />
-          <iron-icon icon="mdi:water-percent"></iron-icon><b>Nível da água:</b><br /><br />
-          <iron-icon icon="mdi:alarm"></iron-icon><b>Hora atual:</b><br /><br /><br />
-        </div>
-      </paper-card>
-    </div>
-
+    <section onclick="clickHandler(event)">
+    <paper-toast id="toastteste" text="Horário calibrado com sucesso"></paper-toast>
+      <div class="content">
+        <paper-card elevation="1" class="fancy" heading="Dispositivos" image="../../images/large-header.png">
+          <div class="card-content">
+            <paper-checkbox id="automode_av"  onclick="EnviarComandoAUTO()">Automático</paper-checkbox><paper-toggle-button class="direita" id="ptb_all" onclick="LigarTodos('DALL')"></paper-toggle-button><span class="hidden" id="all"></span><br><br>
+            <iron-icon icon="mdi:lan"></iron-icon>Dispositivo A<span id="D1" ></span><paper-toggle-button class="direita" id='ptb_av1' onclick="EnviarSaida('D1')" disabled></paper-toggle-button><br /><br />
+            <iron-icon icon="mdi:lan"></iron-icon>Dispositivo B<span id="D2" ></span><paper-toggle-button class="direita" id='ptb_av2' onclick="EnviarSaida('D2')" disabled></paper-toggle-button><br /><br />
+            <iron-icon icon="mdi:lan"></iron-icon>Dispositivo C<span id="D3" ></span><paper-toggle-button class="direita" id='ptb_av3' onclick="EnviarSaida('D3')" ></paper-toggle-button><br /><br />
+            <iron-icon icon="mdi:lan"></iron-icon>Dispositivo D<span id="D4" ></span><paper-toggle-button class="direita" id='ptb_av4' onclick="EnviarSaida('D4')" ></paper-toggle-button><br /><br />
+            <iron-icon icon="mdi:flashlight"></iron-icon> Iluminação<span id="LUZ" ></span><paper-toggle-button class="direita" id="ptb_luzav" onclick="EnviarComandoRGB('LUZ')"></paper-toggle-button><br><br>
+            <paper-button onclick="EnviarComando('FEE')">Alimentar</paper-button>
+          </div>
+        </paper-card>
+        <script>
+        function cores(){
+          var cor = document.getElementById('custom_color');
+          if (cor.checked){
+            $("#ptb_luzgre").prop("disabled", true);
+            $("#ptb_luzblu").prop("disabled", true);
+            $("#ptb_luzred").prop("disabled", true);
+          }else{
+            $("#ptb_luzgre").prop("disabled", false);
+            $("#ptb_luzblu").prop("disabled", false);
+            $("#ptb_luzred").prop("disabled", false);
+          }
+        }
+        </script>
+        <paper-card elevation="1" class="fancy" heading="Situação atual" image="../../images/large-header.png">
+          <div class="card-content">
+            <iron-icon icon="mdi:temperature-celsius"></iron-icon><b>Temperatura: </b> <span id="temp_av"></span><br /><br />
+            <iron-icon icon="mdi:water-percent"></iron-icon><b>Nível da água no aquário: </b><span id="nivel_ava"></span><br /><br />
+            <iron-icon icon="mdi:water-percent"></iron-icon><b>Nível da água no reservatório: </b><span id="nivel_avr"></span><br /><br />
+            <iron-icon icon="mdi:alarm"></iron-icon><b>Hora atual: </b><flip-clock></flip-clock><br /><br />
+            <iron-icon icon="mdi:alarm"></iron-icon><b>Hora no arduino: </b><span id="horaAr"></span ><a class="direita" onclick="AlterarHorarioArduino()"><iron-icon icon="mdi:check"></iron-icon></a><br /><br />
+            <iron-icon icon="mdi:calendar-clock"></iron-icon><b>Agendamento C: </b><span id="horaC"></span><a class="direita" data-dialog="modal"><iron-icon icon="mdi:settings"></iron-icon></a><br /><br />
+            <iron-icon icon="mdi:calendar-clock"></iron-icon><b>Agendamento Luz: </b><span id="horaL"></span><a class="direita" data-dialog="modal3"><iron-icon icon="mdi:settings"></iron-icon></a><br /><br />
+            <iron-icon icon="mdi:calendar-clock"></iron-icon><b>Agendamento Alimentação: </b><span id="horaF"></span><a class="direita" data-dialog="modal4"><iron-icon icon="mdi:settings"></iron-icon></a><br /><br />
+          </div>
+        </paper-card>
+        <br /><br /><br /><br /><br /><br />
+        <paper-dialog id="modal" modal>
+          <h2>Dispositivo C</h2>
+          <div class="row">
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s6">
+                  <input id="horac" type="number" max-length="2" class="validate">
+                  <label for="horac">Inicial</label>
+                </div>
+                <div class="input-field col s6">
+                  <input id="horafc" type="number" class="validate">
+                  <label for="horafc">Final</label>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="buttons">
+            <paper-button dialog-confirm autofocus onclick="AlterarPeriodo('C')">Confirmar</paper-button>
+          </div>
+        </paper-dialog>
+        <paper-dialog id="modal3" modal>
+          <h2>Luz</h2>
+          <div class="row">
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s6">
+                  <input id="horal" type="number" max-length="2" class="validate">
+                  <label for="horal">Inicial</label>
+                </div>
+                <div class="input-field col s6">
+                  <input id="horafl" type="number" class="validate">
+                  <label for="horafl">Final</label>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="buttons">
+            <paper-button dialog-confirm autofocus onclick="AlterarPeriodo('L')">Confirmar</paper-button>
+          </div>
+        </paper-dialog>
+        <paper-dialog id="modal4" modal>
+          <h2>Alimentação</h2>
+          <div class="row">
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="horafe" type="number" max="12" class="validate">
+                  <label for="horafe">de 1 a 12</label>
+                </div>
+              </div>
+              <div class="row">
+                <p>
+                  A segunda alimentação é automaticamente definida para ser feita 12h após a primeira
+                </p>
+              </div>
+            </form>
+          </div>
+          <div class="buttons">
+            <paper-button dialog-confirm autofocus onclick="AlterarPeriodo('F')">Confirmar</paper-button>
+          </div>
+        </paper-dialog>
+        <script>
+          function clickHandler(e) {
+            var button = e.target;
+            while (!button.hasAttribute('data-dialog') && button !== document.body) {
+              button = button.parentElement;
+            }
+            if (!button.hasAttribute('data-dialog')) {
+              return;
+            }
+            var id = button.getAttribute('data-dialog');
+            var dialog = document.getElementById(id);
+            if (dialog) {
+              dialog.open();
+            }
+          }
+        </script>
+  </div>
+</section>
   </template>
   <script>
   (function() {
@@ -99,6 +236,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         foo: {
           type: String,
           value: 'advanced-panel',
+          notify: true
+        },
+
+        time: {
+          type: String,
+          value: '3:30 PM',
           notify: true
         }
       }

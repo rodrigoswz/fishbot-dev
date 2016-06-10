@@ -95,8 +95,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-card elevation="1" class="fancy" heading="Dispositivos" image="../../images/header.png">
         <div class="card-content">
           <paper-checkbox id="automode" onclick="EnviarComandoAUTO()">Automático</paper-checkbox><br><br>
-          <iron-icon icon="mdi:lan"></iron-icon>Dispositivo A<paper-toggle-button id="ptb_mp1" onclick="EnviarSaida('D1')" ></paper-toggle-button><br /><br />
-          <iron-icon icon="mdi:lan"></iron-icon>Dispositivo B<paper-toggle-button id="ptb_mp2" onclick="EnviarSaida('D2')" ></paper-toggle-button><br /><br />
+          <iron-icon icon="mdi:lan"></iron-icon>Dispositivo A<paper-toggle-button id="ptb_mp1" onclick="EnviarSaida('D1')" disabled></paper-toggle-button><br /><br />
+          <iron-icon icon="mdi:lan"></iron-icon>Dispositivo B<paper-toggle-button id="ptb_mp2" onclick="EnviarSaida('D2')" disabled></paper-toggle-button><br /><br />
           <iron-icon icon="mdi:lan"></iron-icon>Dispositivo C<paper-toggle-button id="ptb_mp3" onclick="EnviarSaida('D3')" ></paper-toggle-button><br /><br />
           <iron-icon icon="mdi:lan"></iron-icon>Dispositivo D<paper-toggle-button id="ptb_mp4" onclick="EnviarSaida('D4')" ></paper-toggle-button><br />
         </div>
@@ -108,9 +108,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </paper-card>
       <paper-card id="2card" elevation="1" heading="Situação atual" image="../../images/header.png">
         <div class="card-content">
-          <iron-icon icon="mdi:temperature-celsius"></iron-icon><b>Temperatura:</b><br /><br />
-          <iron-icon icon="mdi:water-percent"></iron-icon><b>Nível da água:</b><br /><br />
-          <iron-icon icon="mdi:alarm"></iron-icon><b>Hora atual:</b><br /><br /><br /><br /><br />
+          <iron-icon icon="mdi:temperature-celsius"></iron-icon><b>Temperatura: </b><span id="temp_mp"></span><br /><br />
+          <iron-icon icon="mdi:water-percent"></iron-icon><b>Nível da água no aquário: </b><span id="nivel_mpa"></span><br /><br />
+          <iron-icon icon="mdi:water-percent"></iron-icon><b>Nível da água no reservatório: </b><span id="nivel_mpr"></span><br /><br />
+          <iron-icon icon="mdi:alarm"></iron-icon><b>Hora atual: </b><flip-clock></flip-clock><br /><br /><br />
         </div>
         <div class="card-actions">
           <a href="/log">
