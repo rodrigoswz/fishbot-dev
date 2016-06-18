@@ -32,3 +32,8 @@ gulp
 ```
 
 Dê esse comando para construir o arquivo de distribuição
+
+### Autores
+##### Luiz Eduardo Costantin dos Santos (eduselcip@gmail.com)
+##### Rodrigo de Araujo Souza (rodrigo.souza32@gmail.com)
+###### Christian Alex Fernandes Barbosa (chr.alex@hotmail.com)
