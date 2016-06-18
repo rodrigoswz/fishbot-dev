@@ -73,7 +73,7 @@ function BindData(data){
     $("#ptb_mp2").prop("checked", true);
   }else{
 		$("#D2").html('Off');
-		$("#ptb_av"2).prop("checked", false);
+		$("#ptb_av2").prop("checked", false);
     $("#ptb_mp2").prop("checked", false);
   }
   
