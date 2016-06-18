@@ -43,7 +43,7 @@ function FirebaseAjax(){
     var horaatual = fbhora + ':' + fbmin + ':' + fbsec;
 
     firebase.database().ref('data/').push({dia: table_fb.dia, mes: table_fb.mes, ano: table_fb.ano, Auto: table_fb.auto, hora: horaatual, Temp: table_fb.temp, D1: table_fb.disp1, D2: table_fb.disp2, D3: table_fb.disp3,
-    D4: table_fb.disp4, Luz: table_fb.luz, Nivel: table_fb.nivela, AgeD3HrI: table_fb.skd_disp3_hri, AgeD3HrF: table_fb.skd_disp3_hrf, AgeD4HrI: table_fb.skd_disp4_hri, AgeD4HrF: table_fb.skd_disp4_hrf,
+    D4: table_fb.disp4, Luz: table_fb.luz, nivela: table_fb.nivela, nivelr: table_fb.nivelr, AgeD3HrI: table_fb.skd_disp3_hri, AgeD3HrF: table_fb.skd_disp3_hrf, AgeD4HrI: table_fb.skd_disp4_hri, AgeD4HrF: table_fb.skd_disp4_hrf,
     AgeFeed1: table_fb.skd_feed1, AgeFeed2: table_fb.skd_feed2, AgeLUZHrI: table_fb.skd_luz_hri, AgeLUZHrF: table_fb.skd_luz_hrf});
     console.log("Enviado para o firebase com sucesso!");
   });
